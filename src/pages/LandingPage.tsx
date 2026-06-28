@@ -60,7 +60,7 @@ export default function LandingPage() {
   }, []);
 
   const stats = [
-    { value: '5kM+', label: 'Verified Users' },
+    { value: '5k+', label: 'Verified Users' },
     { value: '1k+', label: 'Successful Matches' },
     { value: '1K+', label: 'Relationships' },
     { value: '99.9%', label: 'Safety Score' },
