@@ -14,7 +14,7 @@ const fadeInUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] as const },
+    transition: { delay: i * 0.08, duration: 0.5, ease: [0.4, 0, 0.2, 1] as const },
   }),
 };
 
@@ -60,9 +60,9 @@ export default function LandingPage() {
   }, []);
 
   const stats = [
-    { value: '10M+', label: 'Verified Users' },
-    { value: '5M+', label: 'Successful Matches' },
-    { value: '100K+', label: 'Relationships' },
+    { value: '5kM+', label: 'Verified Users' },
+    { value: '1k+', label: 'Successful Matches' },
+    { value: '1K+', label: 'Relationships' },
     { value: '99.9%', label: 'Safety Score' },
   ];
 
@@ -232,7 +232,7 @@ export default function LandingPage() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: true, amount: 0.3 }}
             className="text-center mb-16"
           >
             <motion.h2 variants={fadeInUp} custom={0} className="text-3xl md:text-5xl font-bold mb-4">
@@ -258,7 +258,7 @@ export default function LandingPage() {
                   key={i}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.3 }}
                   variants={fadeInUp}
                   custom={i}
                   className="glass-strong rounded-2xl p-6 hover:bg-white/[0.08] transition-all duration-300 group"
@@ -281,7 +281,7 @@ export default function LandingPage() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: true, amount: 0.3 }}
             className="text-center mb-16"
           >
             <motion.h2 variants={fadeInUp} custom={0} className="text-3xl md:text-5xl font-bold mb-4">
@@ -300,7 +300,7 @@ export default function LandingPage() {
                   key={i}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.3 }}
                   variants={fadeInUp}
                   custom={i}
                   className="relative"
@@ -329,7 +329,7 @@ export default function LandingPage() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: true, amount: 0.3 }}
             className="text-center mb-16"
           >
             <motion.h2 variants={fadeInUp} custom={0} className="text-3xl md:text-5xl font-bold mb-4">
@@ -348,7 +348,7 @@ export default function LandingPage() {
                   key={i}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.3 }}
                   variants={fadeInUp}
                   custom={i}
                   className="glass rounded-2xl p-6 hover:bg-white/[0.05] transition-all duration-300"
@@ -371,7 +371,7 @@ export default function LandingPage() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: true, amount: 0.3 }}
             className="text-center mb-16"
           >
             <motion.h2 variants={fadeInUp} custom={0} className="text-3xl md:text-5xl font-bold mb-4">
@@ -391,9 +391,7 @@ export default function LandingPage() {
             ].map((plan, i) => (
               <motion.div
                 key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                initial="visible"
                 variants={fadeInUp}
                 custom={i}
                 className={`relative rounded-2xl p-6 ${
@@ -442,7 +440,7 @@ export default function LandingPage() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
             custom={0}
             className="glass-strong rounded-3xl p-12 text-center relative overflow-hidden"

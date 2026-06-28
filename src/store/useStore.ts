@@ -26,6 +26,11 @@ export interface Profile {
   trustScore: number;
   isOnline: boolean;
   lastActive: string;
+  title?: string;
+  income?: string;
+  address?: string;
+  email?: string;
+  phone?: string;
 }
 
 export interface Message {
@@ -87,6 +92,8 @@ interface AppState extends UserState {
   setFilterGoals: (goals: RelationshipGoal[]) => void;
   decrementLikes: () => void;
   decrementChats: () => void;
+  hydrateFromStorage: () => void;
+  logout: () => void;
 }
 
 export const useStore = create<AppState>()(
@@ -122,6 +129,19 @@ export const useStore = create<AppState>()(
       setFilterGoals: (goals) => set({ filterGoals: goals }),
       decrementLikes: () => set((s) => ({ dailyLikesRemaining: Math.max(0, s.dailyLikesRemaining - 1) })),
       decrementChats: () => set((s) => ({ dailyChatsRemaining: Math.max(0, s.dailyChatsRemaining - 1) })),
+      hydrateFromStorage: () => {
+        const token = localStorage.getItem('access_token');
+        if (token) {
+          set({ isAuthenticated: true });
+        } else {
+          set({ isAuthenticated: false, currentUser: null });
+        }
+      },
+      logout: () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        set({ isAuthenticated: false, currentUser: null, premiumPlan: 'free', dailyLikesRemaining: 10, dailyChatsRemaining: 5, boostCount: 0 });
+      },
     }),
     {
       name: 'TrueBond-store',

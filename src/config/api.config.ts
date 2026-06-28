@@ -12,9 +12,9 @@ const ENV: Environment = (import.meta.env.VITE_APP_ENV as Environment) || 'devel
 
 // ─── Base URLs ─────────────────────────────────────────────────────────────
 const BASE_URLS: Record<Environment, string> = {
-  development:  import.meta.env.VITE_API_BASE_URL  || 'http://localhost:8000/api/v1',
-  staging:      import.meta.env.VITE_API_BASE_URL  || 'https://staging-api.TrueBond.app/api/v1',
-  production:   import.meta.env.VITE_API_BASE_URL  || 'https://api.TrueBond.app/api/v1',
+  development:  import.meta.env.VITE_API_BASE_URL  || 'http://localhost:8080/api/v1',
+  staging:      import.meta.env.VITE_API_BASE_URL  || 'https://staging-api.trustbond.app/api/v1',
+  production:   import.meta.env.VITE_API_BASE_URL  || 'https://api.trustbond.app/api/v1',
 };
 
 export const API_BASE_URL = BASE_URLS[ENV];

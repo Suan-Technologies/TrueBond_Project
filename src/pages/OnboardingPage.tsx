@@ -12,14 +12,14 @@ import type { RelationshipGoal, Gender } from '@/store/useStore';
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
-  const { setCurrentUser, setAuthenticated } = useStore();
+  const { setCurrentUser, setAuthenticated, currentUser } = useStore();
   const [step, setStep] = useState(0);
   const [profile, setProfile] = useState({
-    name: '',
+    name: currentUser?.name || '',
     age: '',
     gender: '' as Gender | '',
-    location: '',
-    profession: '',
+    location: currentUser?.location || '',
+    profession: currentUser?.profession || '',
     education: '',
     height: '',
     languages: [] as string[],
@@ -49,11 +49,12 @@ export default function OnboardingPage() {
     } else {
       setAuthenticated(true);
       setCurrentUser({
+        ...currentUser,
         id: 'me',
         name: profile.name,
         age: parseInt(profile.age) || 25,
         gender: profile.gender || 'other',
-        photos: ['/images/avatar1.jpg'],
+        photos: currentUser?.photos || ['/images/avatar1.jpg'],
         bio: profile.bio,
         location: profile.location,
         distance: '0 km',
@@ -63,8 +64,8 @@ export default function OnboardingPage() {
         languages: profile.languages,
         interests: profile.interests,
         relationshipGoal: profile.relationshipGoal || 'dating',
-        verificationLevel: 'phone',
-        trustScore: 45,
+        verificationLevel: 'email',
+        trustScore: currentUser?.trustScore || 45,
         isOnline: true,
         lastActive: 'now',
       });
