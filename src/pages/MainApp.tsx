@@ -405,7 +405,7 @@ function MomentsView() {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-sm">{moment.user.name}</span>
-                  {moment.user.verificationLevel === 'id' && (
+                  {moment.user.verification_level === 'id' && (
                     <BadgeCheck className="w-3.5 h-3.5 text-blue-400" />
                   )}
                 </div>

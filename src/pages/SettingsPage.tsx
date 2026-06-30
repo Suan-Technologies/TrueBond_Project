@@ -26,7 +26,7 @@ export default function SettingsPage() {
       items: [
         { icon: User, label: 'Edit Profile', value: 'Name, photos, bio', action: () => {} },
         { icon: Camera, label: 'Photos', value: `${currentUser?.photos?.length || 0} photos`, action: () => {} },
-        { icon: BadgeCheck, label: 'Verification', value: `${currentUser?.trustScore || 0}% complete`, action: () => {} },
+        { icon: BadgeCheck, label: 'Verification', value: `${currentUser?.trust_score || 0}% complete`, action: () => {} },
       ],
     },
     {

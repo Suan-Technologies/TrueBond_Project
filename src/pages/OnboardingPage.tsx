@@ -64,10 +64,10 @@ export default function OnboardingPage() {
         languages: profile.languages,
         interests: profile.interests,
         relationshipGoal: profile.relationshipGoal || 'dating',
-        verificationLevel: 'email',
-        trustScore: currentUser?.trustScore || 45,
-        isOnline: true,
-        lastActive: 'now',
+        verification_level: 'email',
+        trust_score: currentUser?.trust_score || 45,
+        is_online: true,
+        last_active: 'now',
       });
       navigate('/app');
     }

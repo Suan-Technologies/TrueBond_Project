@@ -62,7 +62,7 @@ export default function ProfileDetailPage() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <h1 className="text-3xl font-bold">{profile.name}, {profile.age}</h1>
-                {profile.verificationLevel === 'id' && (
+                {profile.verification_level === 'id' && (
                   <BadgeCheck className="w-6 h-6 text-blue-400" />
                 )}
               </div>
@@ -75,7 +75,7 @@ export default function ProfileDetailPage() {
             </div>
             <div className="glass px-4 py-2 rounded-full">
               <div className="text-xs text-white/50">Trust</div>
-              <div className="text-lg font-bold gradient-text">{profile.trustScore}%</div>
+              <div className="text-lg font-bold gradient-text">{profile.trust_score}%</div>
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@ export default function ProfileDetailPage() {
           <div className="glass rounded-2xl p-4">
             <Shield className="w-5 h-5 text-white/40 mb-2" />
             <div className="text-xs text-white/40">Verification</div>
-            <div className="text-sm font-medium capitalize">{profile.verificationLevel} Verified</div>
+            <div className="text-sm font-medium capitalize">{profile.verification_level} Verified</div>
           </div>
         </div>
 

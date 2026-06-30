@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export type RelationshipGoal = 'friendship' | 'dating' | 'serious' | 'engagement' | 'marriage';
-export type VerificationLevel = 'none' | 'phone' | 'email' | 'face' | 'id';
+export type verification_level = 'none' | 'phone' | 'email' | 'face' | 'id';
 export type Gender = 'male' | 'female' | 'other';
 export type PremiumPlan = 'free' | 'silver' | 'gold' | 'platinum';
 
@@ -22,10 +22,10 @@ export interface Profile {
   languages: string[];
   interests: string[];
   relationshipGoal: RelationshipGoal;
-  verificationLevel: VerificationLevel;
-  trustScore: number;
-  isOnline: boolean;
-  lastActive: string;
+  verification_level: verification_level;
+  trust_score: number;
+  is_online: boolean;
+  last_active: string;
   title?: string;
   income?: string;
   address?: string;

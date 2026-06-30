@@ -23,7 +23,7 @@ export default function PassportPage() {
     { label: 'Friendships', value: 3, icon: Users, color: 'text-blue-400' },
     { label: 'Relationships', value: 1, icon: Heart, color: 'text-rose-400' },
     { label: 'Longest (days)', value: 180, icon: Clock, color: 'text-amber-400' },
-    { label: 'Trust Score', value: `${profile.trustScore}%`, icon: Shield, color: 'text-emerald-400' },
+    { label: 'Trust Score', value: `${profile.trust_score}%`, icon: Shield, color: 'text-emerald-400' },
   ];
 
   const milestones = [
@@ -113,7 +113,7 @@ export default function PassportPage() {
               <span className="text-sm text-white/60">Verification</span>
               <span className="text-sm font-medium capitalize flex items-center gap-1">
                 <BadgeCheck className="w-4 h-4 text-blue-400" />
-                {profile.verificationLevel} Verified
+                {profile.verification_level} Verified
               </span>
             </div>
           </div>
