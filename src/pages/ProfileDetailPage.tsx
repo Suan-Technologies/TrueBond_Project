@@ -32,7 +32,7 @@ export default function ProfileDetailPage() {
       {/* Image Header */}
       <div className="relative h-[60vh]">
         <img
-          src={profile.photos[0]}
+          src={profile.photos?.[0] || '/images/avatar1.jpg'}
           alt={profile.name}
           className="w-full h-full object-cover"
         />

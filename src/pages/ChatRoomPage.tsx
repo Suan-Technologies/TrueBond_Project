@@ -6,6 +6,7 @@ import {
   Mic, Smile, Shield, BadgeCheck
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useStore } from '@/store/useStore';
 import { chatApi, extractData } from '@/services/api';
 import type { Conversation, Message } from '@/services/api';
 
@@ -15,9 +16,10 @@ export default function ChatRoomPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
-  const [isTyping, setIsTyping] = useState(false);
   const [loading, setLoading] = useState(true);
   const [conversation, setConversation] = useState<Conversation | null>(null);
+  const isTyping = false;
+  const { currentUser } = useStore();
 
   const profile = conversation?.profile;
 
@@ -28,7 +30,7 @@ export default function ChatRoomPage() {
     const loadConversation = async () => {
       try {
         const res = await chatApi.getConversations();
-        const conversations = extractData(res);
+        const conversations = extractData<Conversation[]>(res);
         const conv = conversations.find((c: Conversation) => c.profile?.id === id || c.id === id);
         if (!conv) {
           toast.error('Conversation not found');
@@ -38,7 +40,7 @@ export default function ChatRoomPage() {
         setConversation(conv);
 
         const msgRes = await chatApi.getMessages(conv.id);
-        const msgs = extractData(msgRes);
+        const msgs = extractData<Message[]>(msgRes);
         setMessages(msgs.reverse());
 
         await chatApi.markAsRead(conv.id);
@@ -66,7 +68,7 @@ export default function ChatRoomPage() {
     const tempMsg: Message = {
       id: `temp-${Date.now()}`,
       conversation_id: conversation.id,
-      sender_id: 'me',
+      sender_id: currentUser?.id || 'me',
       content,
       type: 'text',
       is_read: false,
@@ -76,7 +78,7 @@ export default function ChatRoomPage() {
 
     try {
       const res = await chatApi.sendMessage(conversation.id, content, 'text');
-      const sent = extractData(res);
+      const sent = extractData<Message>(res);
       setMessages(prev => prev.map(m => m.id === tempMsg.id ? sent : m));
     } catch (err: any) {
       toast.error(err.message || 'Failed to send message');
@@ -161,7 +163,7 @@ export default function ChatRoomPage() {
 
         <AnimatePresence>
           {messages.map((msg, i) => {
-            const isMe = msg.sender_id === 'me';
+            const isMe = msg.sender_id === currentUser?.id;
             const showTime = i === 0 ||
               new Date(messages[i - 1].created_at).getMinutes() !== new Date(msg.created_at).getMinutes();
 

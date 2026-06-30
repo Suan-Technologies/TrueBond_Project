@@ -6,6 +6,7 @@ import {
   User, IndianRupee, Camera, Lock, Eye, EyeOff, Loader2, Calendar
 } from 'lucide-react';
 import { useStore } from '@/store/useStore';
+import type { Profile } from '@/store/useStore';
 import { toast } from 'sonner';
 import CityStateAutocomplete from '@/components/CityStateAutocomplete';
 import { authApi, apiRequest, setTokens } from '@/services/api';
@@ -174,7 +175,7 @@ export default function AuthPage() {
       const res = await authApi.verifyEmail({ email: email.trim(), otp: combined });
       setTokens(res.access_token, res.refresh_token);
       const user = await authApi.getMe();
-      setCurrentUser(user);
+      setCurrentUser(user as Profile);
       setAuthenticated(true);
       toast.success('Welcome to TrueBond!');
       if (mode === 'register') {
@@ -209,7 +210,7 @@ export default function AuthPage() {
       const res = await authApi.login({ email: email.trim(), password });
       setTokens(res.access_token, res.refresh_token);
       const user = await authApi.getMe();
-      setCurrentUser(user);
+      setCurrentUser(user as Profile);
       setAuthenticated(true);
       toast.success('Welcome back!');
       navigate(user.bio ? '/app' : '/onboarding');

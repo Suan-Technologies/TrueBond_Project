@@ -48,7 +48,7 @@ export default function PassportPage() {
         <div className="absolute -bottom-16 left-1/2 -translate-x-1/2">
           <div className="w-32 h-32 rounded-full p-1 gradient-btn">
             <img
-              src={profile.photos[0]}
+              src={profile.photos?.[0] || '/images/avatar1.jpg'}
               alt={profile.name}
               className="w-full h-full rounded-full object-cover border-2 border-[#050505]"
             />

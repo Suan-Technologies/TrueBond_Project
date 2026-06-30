@@ -86,6 +86,14 @@ export const VERIFICATION_ENDPOINTS = {
   uploadId:           '/verification/id/upload',
 } as const;
 
+// ─── Notification Endpoints ───────────────────────────────────────────────
+export const NOTIFICATION_ENDPOINTS = {
+  getNotifications:   '/notifications',
+  markAsRead:         '/notifications/:notificationId/read',
+  markAllAsRead:      '/notifications/read-all',
+  unreadCount:        '/notifications/unread-count',
+} as const;
+
 // ─── Premium / Subscription Endpoints ────────────────────────────────────────
 export const PREMIUM_ENDPOINTS = {
   getPlans:           '/premium/plans',
@@ -170,6 +178,7 @@ const API_CONFIG = {
   VERIFICATION_ENDPOINTS,
   PREMIUM_ENDPOINTS,
   PAYMENT_ENDPOINTS,
+  NOTIFICATION_ENDPOINTS,
   ADMIN_ENDPOINTS,
   buildUrl,
   buildFullUrl,

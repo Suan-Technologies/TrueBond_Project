@@ -42,7 +42,7 @@ function DiscoverView({ onLike, onPass, onSuperLike }: {
     try {
       setLoading(true);
       const res = await discoveryApi.getProfiles();
-      const data = extractData(res);
+      const data = extractData<{profiles?: Profile[]; page?: number; limit?: number}>(res);
       const profiles = Array.isArray(data) ? data : data.profiles || [];
       setProfiles(profiles);
       setCurrentIndex(0);
@@ -276,7 +276,7 @@ function MatchesView() {
     try {
       setLoading(true);
       const res = await matchApi.getMatches();
-      const data = extractData(res);
+      const data = extractData<Match[] | {matches?: Match[]}>(res);
       const matches = Array.isArray(data) ? data : data.matches || [];
       setMatches(matches);
     } catch (err: any) {
@@ -398,7 +398,7 @@ function MomentsView() {
             {/* User Header */}
             <div className="flex items-center gap-3 p-4">
               <img
-                src={moment.user.photos[0]}
+                src={moment.user.photos?.[0] || '/images/avatar1.jpg'}
                 alt={moment.user.name}
                 className="w-10 h-10 rounded-full object-cover"
               />
@@ -455,7 +455,7 @@ function ChatView() {
     try {
       setLoading(true);
       const res = await chatApi.getConversations();
-      const data = extractData(res);
+      const data = extractData<Conversation[] | {conversations?: Conversation[]}>(res);
       const conversations = Array.isArray(data) ? data : data.conversations || [];
       setConversations(conversations);
     } catch (err: any) {

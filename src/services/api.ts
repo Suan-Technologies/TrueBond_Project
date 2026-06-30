@@ -1,4 +1,4 @@
-import { API_BASE_URL, API_TIMEOUT, AUTH_ENDPOINTS, USER_ENDPOINTS, CHAT_ENDPOINTS, MATCH_ENDPOINTS, DISCOVERY_ENDPOINTS } from '@/config/api.config';
+import { API_BASE_URL, API_TIMEOUT, AUTH_ENDPOINTS, USER_ENDPOINTS, CHAT_ENDPOINTS, MATCH_ENDPOINTS, DISCOVERY_ENDPOINTS, NOTIFICATION_ENDPOINTS } from '@/config/api.config';
 
 // ─── Backend-Compatible Types ─────────────────────────────────────────────
 
@@ -311,6 +311,45 @@ export const discoveryApi = {
     apiRequest<{ data: any }>(
       `${API_BASE_URL}${DISCOVERY_ENDPOINTS.superLike.replace(':profileId', profileId)}`,
       { method: 'POST' }
+    ),
+};
+
+// ─── Notification API ─────────────────────────────────────────────────────
+
+export interface Notification {
+  id: string;
+  user_id: string;
+  type: 'match' | 'message' | 'like' | 'superlike' | 'system';
+  title: string;
+  body: string;
+  related_id?: string;
+  is_read: boolean;
+  created_at: string;
+}
+
+export const notificationApi = {
+  getNotifications: () =>
+    apiRequest<{ data: Notification[] }>(
+      `${API_BASE_URL}${NOTIFICATION_ENDPOINTS.getNotifications}`,
+      { method: 'GET' }
+    ),
+
+  markAsRead: (notificationId: string) =>
+    apiRequest<{ message: string }>(
+      `${API_BASE_URL}${NOTIFICATION_ENDPOINTS.markAsRead.replace(':notificationId', notificationId)}`,
+      { method: 'POST' }
+    ),
+
+  markAllAsRead: () =>
+    apiRequest<{ message: string }>(
+      `${API_BASE_URL}${NOTIFICATION_ENDPOINTS.markAllAsRead}`,
+      { method: 'POST' }
+    ),
+
+  unreadCount: () =>
+    apiRequest<{ data: { count: number } }>(
+      `${API_BASE_URL}${NOTIFICATION_ENDPOINTS.unreadCount}`,
+      { method: 'GET' }
     ),
 };
 
